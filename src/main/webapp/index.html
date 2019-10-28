@@ -20,37 +20,46 @@
 </head>
 <body>
     <div id="app">
-        <div style="width: 400px">
-            <el-upload
-                    :on-success="success"
-                    class="upload-demo"
-                    drag
-                    action="upload.do"
-                    multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">拖动，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-            </el-upload>
+        <div style="display: inline-block">
+            <div style="width: 400px;display: inline-block">
+                <el-upload
+                        :on-success="success"
+                        class="upload-demo"
+                        drag
+                        action="upload.do"
+                        multiple>
+                    <i class="el-icon-upload"></i>
+                    <div class="el-upload__text">拖动，或<em>点击上传</em></div>
+                    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
+            </div>
+
+            <el-button v-on:click="hancleClear" type="primary">清除</el-button>
         </div>
 
-        <p>
-            {{text}}
-        </p>
+        <div v-for="item in datas">
+            {{item}}
+        </div>
     </div>
 
 <script>
-    var vm = new Vue({
+     var vm = new Vue({
         el:"#app",
         data:{
-            message:123,
-            text:""
+            message:"你好",
+            datas:[]
         },
         methods:{
             success:function (result,file,fileList) {
                 var arr = result.words_result;
-                for (obj of arr){
-                    this.text += obj.words;
+                if(arr){
+                    for (obj of arr){
+                        this.datas.push(obj.words);
+                    }
                 }
+            },
+            hancleClear:function () {
+                this.datas = []
             }
         }
     });
