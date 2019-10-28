@@ -1,15 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Document</title>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <!-- vue-->
+    <script type="text/javascript" src="resources/js/vue.js"> </script>
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 </head>
 <body>
+    <div id="app">
+        <div style="width: 400px">
+            <el-upload
+                    :on-success="success"
+                    class="upload-demo"
+                    drag
+                    action="upload.do"
+                    multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">拖动，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
+        </div>
 
-你好
+        <p>
+            {{text}}
+        </p>
+    </div>
 
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:123,
+            text:""
+        },
+        methods:{
+            success:function (result,file,fileList) {
+                var arr = result.words_result;
+                for (obj of arr){
+                    this.text += obj.words;
+                }
+            }
+        }
+    });
+
+</script>
 </body>
 </html>
