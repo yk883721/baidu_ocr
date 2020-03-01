@@ -17,6 +17,14 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 <!--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <style>
+        .footer {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            display: flex;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -39,6 +47,9 @@
 
         <div v-for="item in datas">
             {{item}}
+        </div>
+        <div class="footer">
+            <a href="http://www.beian.miit.gov.cn/">皖ICP备20002064号</a>
         </div>
     </div>
 
